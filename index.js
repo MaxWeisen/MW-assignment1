@@ -89,6 +89,22 @@ function sortByUser() {
   }
 }
 
+function darkTheme() {
+  document.getElementById('body').style.background = '#202020';
+  const userCards = document.getElementsByClassName('userCard');
+  for (let cards of userCards) {
+    cards.style.backgroundColor = '#404040';
+    cards.style.color = '#FFFFFF'
+  }
+}
 
+function lightTheme() {
+  document.getElementById('body').style.background = '#FFFFFF';
+  const userCards = document.getElementsByClassName('userCard');
+  for (let cards of userCards) {
+    cards.style.backgroundColor = '#C0C0C0';
+    cards.style.color = '#303030'
+  }
+}
 
 
