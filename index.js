@@ -20,20 +20,31 @@ function fetchUsers() {
         // Create an image element to append to card div
         const userImg = document.createElement('img');
         // Add a source attribute to the img element
-        userImg.src = res.results[i].picture.large
+        userImg.src = res.results[i].picture.medium
         // Append the img element to the card div
         userCard.appendChild(userImg)
-        // Create a h1 for the username below profile pic
+        // Create a h3 for the username below profile pic
         const userName = document.createElement('h3');
-        userName.innerText = res.results[i].login.username;
+        // Assign inner text to the username of server response
+        userName.innerText = `Username: ${res.results[i].login.username}`;
+        // Append the username to our card element
         userCard.appendChild(userName);
-
-
+        // Create a h4 for the age of our user
+        const userAge = document.createElement('h4');
+        // Assign inner text of age to the server response age
+        userAge.innerText = `Age: ${res.results[i].dob.age}`;
+        // Append the userAge to the card element
+        userCard.appendChild(userAge)
+        // Create a <p> element for the description of each individual 
+        const userDesc = document.createElement('p');
+        // Assign the inner text of our description to the email of the user as a placeholder
+        userDesc.innerText = `Description: ${res.results[i].email}`;
+        // Append the userDesc to our card element
+        userCard.appendChild(userDesc);
         // Finally append all the cards to the grid
         userGrid.appendChild(userCard)
       }
     })
-
 }
 
 fetchUsers();
