@@ -8,7 +8,6 @@ function fetchUsers() {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log('this is response from user server', res);
       // Once we have our user data from the API, create cards for each user.
       for (let i = 0; i < 100; i++) {
         // Get the div in document to append to
@@ -26,7 +25,7 @@ function fetchUsers() {
         // Create a h3 for the username below profile pic
         const userName = document.createElement('h3');
         // Assign inner text to the username of server response
-        userName.innerText = `Username: ${res.results[i].login.username}`;
+        userName.innerText = `User: ${res.results[i].login.username}`;
         // Append the username to our card element
         userCard.appendChild(userName);
         // Create a h4 for the age of our user
@@ -41,10 +40,37 @@ function fetchUsers() {
         userDesc.innerText = `Description: ${res.results[i].email}`;
         // Append the userDesc to our card element
         userCard.appendChild(userDesc);
+        userCard.setAttribute('id', `${res.results[i].dob.age}`)
         // Finally append all the cards to the grid
         userGrid.appendChild(userCard)
+        // Add individual userCard to an array for sorting later
+        usersList.push(userCard);
       }
     })
 }
 
 fetchUsers();
+
+
+
+function sortByAge() {
+  let toSort = document.getElementById('users').children;
+  toSort = Array.prototype.slice.call(toSort, 0);
+
+  toSort.sort((a, b) => {
+    let aOrd = +a.id;
+    let bOrd = +b.id;
+    return (aOrd > bOrd) ? 1 : -1;
+  });
+
+  let parent = document.getElementById('users');
+  parent.innerHTML = "";
+
+  for(let i = 0, l = toSort.length; i < l; i++) {
+    parent.appendChild(toSort[i]);
+  }
+}
+
+
+
+
